@@ -8,7 +8,7 @@ class Decryptor {
     func decrypt(_ input: String) -> String? {
         var output = ""
         for character in input.characters {
-            output += substitute(String(character))
+            output += substitute(String(character).lowercased())
         }
         
         return output
@@ -17,14 +17,6 @@ class Decryptor {
     func substitute(_ string: String) -> String {
         assertionFailure("Override!")
         return ""
-    }
-    
-    func prepare(input: String) -> String {
-        return input
-    }
-    
-    func prepare(output: String) -> String {
-        return output
     }
 }
 
@@ -41,7 +33,6 @@ class ShiftLettersDecryptor: Decryptor {
     
     override func substitute(_ string: String) -> String {
         guard let index = alphabet.index(of: string) else { return string }
-        
         var movedIndex = index + shift
         if movedIndex < 0 {
             movedIndex = alphabet.count + movedIndex
@@ -102,4 +93,3 @@ class NumbersDecryptor: Decryptor {
         return alphabet[index - 1].isEmpty ? string : alphabet[index - 1]
     }
 }
-
