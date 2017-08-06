@@ -76,6 +76,7 @@ class NumbersDecryptor: Decryptor {
             .replacingOccurrences(of: "'", with: "-")
             .replacingOccurrences(of: "–", with: "-")
             .replacingOccurrences(of: "“", with: "")
+            .replacingOccurrences(of: "”", with: "")
             .components(separatedBy: "-")
         
         for number in numbers {
@@ -101,3 +102,8 @@ class NumbersDecryptor: Decryptor {
         return alphabet[index - 1].isEmpty ? string : alphabet[index - 1]
     }
 }
+
+let s01e07Encrypted = "14–5–24–20 21–16: “6–15–15–20–2–15–20 20–23–15: 7–18–21–14–11–12–5'19 7–18–5–22–5–14–7–5”"
+let s01e07Decrypted = NumbersDecryptor().decrypt(s01e07Encrypted)
+    //ShiftLettersDecryptor(shift: -3).decrypt(AtbashDecryptor().decrypt(NumbersDecryptor().decrypt(s01e07Encrypted)!)!)
+print(s01e07Decrypted!)
