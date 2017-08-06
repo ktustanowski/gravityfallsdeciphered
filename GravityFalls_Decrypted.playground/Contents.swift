@@ -80,6 +80,10 @@ class NumbersDecryptor: Decryptor {
             .components(separatedBy: "-")
         
         for number in numbers {
+            guard Int(number) != nil else {
+                assertionFailure("Unsupported character found in _\(number)_. Please remove it or add another .replacingOccurrences(of:")
+                break }
+                
             guard cipherDictionary[number] == nil else { continue }
             cipherDictionary[number] = substitute(number)
         }
